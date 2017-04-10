@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    run: peximet-worker
+  name: peximet-worker
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      run: peximet-worker
+  template:
+    metadata:
+      labels:
+        run: peximet-worker
+    spec:
+      containers:
+      - name: peximet-worker
+        image: ziyasal/peximet
+        env:
+        - name: SEED_NODES
+          value: peximet-seed-0.peximet-seed,peximet-seed-1.peximet-seed
+        - name: HOST_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: status.podIP
+        livenessProbe:
+          tcpSocket:
+            port: 2551
+        ports:
+        - containerPort: 2551
+          protocol: TCP
