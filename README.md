@@ -1,6 +1,20 @@
 # Peximet
 Akka cluster sample on Kubernetes
 
+## Create Docker Image
+:warning: Kubernetes configurations should be updated accordingly!
+
+```sh
+#Build
+sbt assembly
+
+#build image
+docker build -t {username}/peximet .
+
+docker push {username}/peximet
+
+
+```
 
 ## Installation
 ```sh
