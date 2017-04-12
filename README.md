@@ -7,7 +7,7 @@ Akka cluster sample on Kubernetes
 # To deploy the seed nodes:
 kubectl apply -f kubernetes/peximet-seed.yaml
 # To deploy the worker nodes:
-kubectll apply -f kubernetes/peximet-workers.yaml
+kubectl apply -f kubernetes/peximet-workers.yaml
 
 #Option 2: to deploy everything
 kubectl apply -f kubernetes/
