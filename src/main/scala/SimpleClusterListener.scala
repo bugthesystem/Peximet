@@ -1,18 +1,25 @@
 package com.ziyasal.peksimet
 
-import akka.actor.{Props, UntypedActor}
-import akka.cluster.ClusterEvent.{MemberRemoved, MemberUp, UnreachableMember}
-import akka.cluster.{Cluster, ClusterEvent}
+import akka.actor.Props
+import akka.actor.UntypedActor
+import akka.cluster.Cluster
+import akka.cluster.ClusterEvent
+import akka.cluster.ClusterEvent.MemberEvent
+import akka.cluster.ClusterEvent.MemberUp
+import akka.cluster.ClusterEvent.MemberRemoved
+import akka.cluster.ClusterEvent.UnreachableMember
 import akka.event.Logging
-
+import akka.event.LoggingAdapter
+import scala.concurrent.ExecutionContext.Implicits.global
 
 object SimpleClusterListener {
   def props: Props = Props.create(classOf[SimpleClusterListener])
 }
 
 class SimpleClusterListener extends UntypedActor {
-  private[akka] val log = Logging.getLogger(getContext.system, this)
-  private[akka] val cluster = Cluster.get(getContext.system)
+
+  private[peksimet] val log = Logging.getLogger(getContext.system, this)
+  private[peksimet] val cluster = Cluster.get(getContext.system)
 
   override def preStart(): Unit = {
     cluster.subscribe(getSelf, ClusterEvent.initialStateAsEvents,

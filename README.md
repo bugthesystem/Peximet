@@ -26,6 +26,6 @@ kubectl logs -f peximet-seed-4
 ```
 
 ## TODO
- - Create fatjar using sbt
+ - ~~Create fatjar using sbt-assembly~~
  - Add tests
  - ~~Implement example actor model scenario~~

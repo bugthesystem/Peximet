@@ -9,6 +9,8 @@ import scala.concurrent.duration.Duration
 import scala.concurrent.{Await, Future}
 import scala.util.Random
 
+import scala.concurrent.ExecutionContext.Implicits.global
+
 object Main extends App {
   private val CLUSTER_NAME = "PeximetActorSystem"
   val actorSystem = ActorSystem(CLUSTER_NAME)
